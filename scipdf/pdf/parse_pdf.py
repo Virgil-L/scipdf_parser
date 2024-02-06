@@ -406,6 +406,7 @@ def parse_figures(
     jar_path: str = PDF_FIGURES_JAR_PATH,
     resolution: int = 300,
     output_folder: str = "figures",
+    max_timeout: int = 60,
 ):
     """
     Parse figures from the given scientific PDF using pdffigures2
@@ -446,7 +447,7 @@ def parse_figures(
             op.join(op.abspath(figure_path), ""),  # end path with "/"
         ]
         _ = subprocess.run(
-            args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=20
+            args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=max_timeout
         )
         print("Done parsing figures from PDFs!")
     else:
